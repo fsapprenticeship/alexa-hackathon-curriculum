@@ -5,9 +5,63 @@ frameworkVersion: ">=1.4.0 <2.0.0"
 provider:
   name: aws
   runtime: nodejs8.10
+  stage: us-west-2
 
 functions:
   readExperience:
     handler: handler.readExperience
     events:
-      - alexaSkill
+      - alexaSkill: amzn1.ask.skill.cf4bd9af-c991-405c-971b-8a6925d6c280
+plugins:
+  - serverless-alexa-skills
+package:
+  excludeDevDependencies: false  
+
+custom:
+  alexa:
+    vendorId: "M260JL3BWICTIU"
+    clientId: "amzn1.application-oa2-client.d84ed242c5ac42e2ac18f9b2db7aa718"
+    clientSecret: "ff9de5939c9a36542cd136a97a94976633d26eec3260d5eda1a9d523edd62264"
+    skills:
+      - id: amzn1.ask.skill.cf4bd9af-c991-405c-971b-8a6925d6c280
+        manifest:
+          publishingInformation:
+            locales:
+              en-US:
+                name: fsa-audio
+          apis:
+            custom:
+              endpoint:
+                uri: arn:aws:lambda:us-east-1:989853312915:function:fsa-audio-us-west-2-readExperience             
+          manifestVersion: '1.0'
+        models:
+          en-US:
+            interactionModel:
+              languageModel:
+                invocationName: fsa profile
+                intents:
+                  - name: MeetupIntent
+                    samples:
+                    - 'experience'
+                    - 'my experience'
+                    - 'my profile'
+                    - 'something'
+                  - name: AMAZON.HelpIntent
+                    samples: []
+                  - name: AMAZON.CancelIntent
+                    samples: []
+                  - name: AMAZON.StopIntent
+                    samples: []
+    
+    # skills:
+    #  - id: amzn1.ask.skill.cf4bd9af-c991-405c-971b-8a6925d6c280
+    #    manifest:
+    #     publishingInformation:
+    #      locales:
+    #       en-US:
+    #        name: fsa-audio
+    #    apis:
+    #     custom:
+    #      endpoint:
+    #       uri: arn:aws:lambda:us-east-1:989853312915:function:fsa-audio-dev-readExperience
+    #    manifestVersion: '1.0'

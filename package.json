@@ -16,8 +16,17 @@
     "url": "https://github.com/fsapprenticeship/alexa-hackathon-curriculum/issues"
   },
   "homepage": "https://github.com/fsapprenticeship/alexa-hackathon-curriculum#readme",
+  "devDependencies": {
+    "@sanity/client": "*",
+    "jest": "^24.1.0",
+    "serverless-alexa-skills": "^0.1.0",
+    "serverless-offline": "^3.33.0",
+    "serverless-webpack": "^5.2.0"
+  },
   "dependencies": {
-    "@sanity/client": "^0.140.11",
-    "https": "^1.0.0"
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "serverless": "^1.40.0",
+    "serverless-http": "^1.9.1"
   }
 }
